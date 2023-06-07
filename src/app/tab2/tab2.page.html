@@ -1,0 +1,131 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Nueva agenda
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="submitForm()">
+    <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="person"></ion-icon> Nombre
+      </ion-label>
+      <ion-input [(ngModel)]="cliente.nombre" name="nombre" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="call"></ion-icon> Celular
+      </ion-label>
+      <ion-input [(ngModel)]="cliente.celular" name="celular" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">
+        Hora
+      </ion-label>
+      <ion-input [(ngModel)]="cliente.hora" name="hora" type="text" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="options"></ion-icon> Tipo
+      </ion-label>
+      <ion-select [(ngModel)]="cliente.tipo" name="tipo" required>
+        <ion-select-option value="Quinceañera">Quinceañera</ion-select-option>
+        <ion-select-option value="Boda">Boda</ion-select-option>
+        <ion-select-option value="Cumpleaños">Cumpleaños</ion-select-option>
+        <ion-select-option value="Baby">Baby Shower</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="calendar"></ion-icon> Fecha
+      </ion-label>
+      <ion-input [(ngModel)]="cliente.fecha" name="fecha" type="date" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <ion-icon name="water"></ion-icon> Nivel de agua
+      </ion-label>
+      <ion-range [(ngModel)]="cliente.nivelAgua" name="nivelAgua" min="0" max="100" step="1"></ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <ion-icon name="gift"></ion-icon> Mesa de regalos
+      </ion-label>
+      <ion-checkbox [(ngModel)]="cliente.mesaRegalos" name="mesaRegalos"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <ion-icon name="color-palette"></ion-icon> Color de sobremantel
+      </ion-label>
+      <ion-select [(ngModel)]="cliente.colorSobremantel" name="colorSobremante">
+        <ion-select-option value="Rojo">Rojo</ion-select-option>
+        <ion-select-option value="Azul">Azul</ion-select-option>
+        <ion-select-option value="Verde">Verde</ion-select-option>
+        <ion-select-option value="Blanco">Blanco</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <ion-icon name="people"></ion-icon> Capacidad de personas
+      </ion-label>
+      <ion-range [(ngModel)]="cliente.capacidadPersonas" name="capacidadPersonas" min="0" max="100" step="1"></ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <ion-icon name="cash"></ion-icon> Precio
+      </ion-label>
+      <ion-input [(ngModel)]="cliente.precio" name="precio" type="number" required (ionChange)="calculateTotal()"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <ion-icon name="cash"></ion-icon> Anticipo
+      </ion-label>
+      <ion-input [(ngModel)]="cliente.anticipo" name="anticipo" type="number" required (ionChange)="calculateRest()"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <ion-icon name="card"></ion-icon> Tipo de pago
+      </ion-label>
+      <ion-radio-group [(ngModel)]="cliente.tipoPago" name="tipoPago" required>
+        <ion-item>
+          <ion-label>Transferencia</ion-label>
+          <ion-radio value="Transferencia"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Efectivo</ion-label>
+          <ion-radio value="Efectivo"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        Total a pagar
+      </ion-label>
+      <ion-input [(ngModel)]="cliente.totalPagar" name="totalPagar" type="number" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        Resto
+      </ion-label>
+      <ion-input [(ngModel)]="cliente.restoPagar" name="resto" type="number" readonly></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="!formIsValid()">
+      <ion-icon name="send"></ion-icon>  Enviar
+    </ion-button>
+  </form>
+</ion-content>

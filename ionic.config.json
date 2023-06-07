@@ -1,0 +1,7 @@
+{
+  "name": "iw-p1u4-saga",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
